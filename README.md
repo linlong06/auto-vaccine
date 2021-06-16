@@ -1,4 +1,4 @@
-# auto-vaccine
+# Vaccine Hunter
 
 The purpose of this application is to help people search for COVID vaccine availability automatically. The sample script works for appointments tracking from CVS.
 

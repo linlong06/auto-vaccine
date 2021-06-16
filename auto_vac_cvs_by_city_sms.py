@@ -7,9 +7,9 @@ from twilio.rest import Client
 df_cities = pd.read_excel('bay area cities.xlsx', sheet_name = 'Sheet2')
 list_cities = df_cities['Name'].tolist()
 
-# account_sid = os.environ['TWILIO_ACCOUNT_SID']
-# auth_token = os.environ['TWILIO_AUTH_TOKEN']
-# client = Client(account_sid, auth_token)
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
 
 driver_path = "D:\\softwares\\chromedriver_win32\\chromedriver.exe"
 url = "https://www.cvs.com/immunizations/covid-19-vaccine"
@@ -111,11 +111,11 @@ def vaccine_tracking(url, cycle, interval):
                 web.back()
             else:
                 print (str(time.strftime("%H:%M:%S", t)) + ': ' + city + ' has slot available!!!!')
-                # client.messages.create(
-                #          body= str(time.strftime("%H:%M:%S", t)) + ': ' + city + ' has slot available!',
-                #          from_='+19166340477',
-                #          to='+14045020129'
-                #      )
+                client.messages.create(
+                          body= str(time.strftime("%H:%M:%S", t)) + ': ' + city + ' has slot available!',
+                          from_= os.environ['TWILIO_PHONE_NUMBER'],
+                          to= os.environ['PERSONAL_PHONE_NUMBER']
+                      )
     web.close()
     
     
